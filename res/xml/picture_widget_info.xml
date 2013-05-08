@@ -1,0 +1,10 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="530dp"
+    android:minHeight="460dp"
+    android:minResizeWidth="40dp"
+    android:minResizeHeight="40dp"
+    android:initialLayout="@layout/picture_widget"
+    android:configure="com.boztalay.picturewidget.configuration.PictureWidgetConfigurationActivity" 
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen">
+</appwidget-provider>
