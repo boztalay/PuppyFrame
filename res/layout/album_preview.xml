@@ -7,30 +7,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.40"
-        android:gravity="center" >
+        android:layout_weight="0.90" >
 
-        <include
+        <ImageView
+            android:id="@+id/album_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/album_preview" />
+            android:contentDescription="@string/album_thumbnail_content_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/holo_blue_light" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.60"
+        android:layout_weight="0.10"
         android:gravity="center" >
-        
+
+        <TextView
+            android:id="@+id/album_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title!" />
     </LinearLayout>
 
 </LinearLayout>

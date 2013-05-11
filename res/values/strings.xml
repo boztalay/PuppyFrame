@@ -2,6 +2,7 @@
 
     <string name="app_name">PictureWidget</string>
     <string name="image_content_description">Picture Widget Picture</string>
+    <string name="album_thumbnail_content_description">Album Thumbnail</string>
     
     <string name="no_appwidget_id_error">The intent had no EXTRA_APPWIDGET_ID!</string>
 
