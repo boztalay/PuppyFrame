@@ -14,10 +14,10 @@ public class PictureWidgetConfigurationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
-
+		
 		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
-
+		
 		updateAppWidget(appWidgetId);
 		
 		setResult(RESULT_OK, configurationResult);

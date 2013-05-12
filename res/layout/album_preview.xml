@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/album_thumbnail_content_description"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher" />
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
     <LinearLayout
@@ -28,7 +27,7 @@
             android:id="@+id/album_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title!" />
+            android:textIsSelectable="false" />
     </LinearLayout>
 
 </LinearLayout>

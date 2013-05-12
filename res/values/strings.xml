@@ -5,5 +5,5 @@
     <string name="album_thumbnail_content_description">Album Thumbnail</string>
     
     <string name="no_appwidget_id_error">The intent had no EXTRA_APPWIDGET_ID!</string>
-
+    
 </resources>
