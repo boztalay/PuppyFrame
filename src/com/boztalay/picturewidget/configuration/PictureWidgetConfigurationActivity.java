@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.boztalay.picturewidget.R;
@@ -16,15 +15,13 @@ public class PictureWidgetConfigurationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
 		
-		Log.d("PictureWidget", "onCreate called!");
-		
 		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
 		
 		updateAppWidget(appWidgetId);
 		
 		setResult(RESULT_OK, configurationResult);
-		finish();
+//		finish();
 	}
 	
 	private int getAppWidgetId() {
