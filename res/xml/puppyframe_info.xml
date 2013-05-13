@@ -3,8 +3,8 @@
     android:minHeight="40dp"
     android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
-    android:initialLayout="@layout/picture_widget"
-    android:configure="com.boztalay.picturewidget.configuration.PictureWidgetConfigurationActivity" 
+    android:initialLayout="@layout/puppyframe_widget"
+    android:configure="com.boztalay.puppyframe.configuration.PuppyFrameAlbumsActivity" 
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>

@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.persistence;
+package com.boztalay.puppyframe.persistence;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -7,9 +7,9 @@ import java.util.Set;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.boztalay.picturewidget.R;
+import com.boztalay.puppyframe.R;
 
-public class PictureWidgetPersistenceManager implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private static final String ALBUM_IDS_KEY = "albumIds";
 	private static final String CURRENT_ALBUM_KEY = "currentAlbum";
 
@@ -19,7 +19,7 @@ public class PictureWidgetPersistenceManager implements SharedPreferences.OnShar
 	private Map<String, Album> albums;
 	private String currentAlbum;
 
-	public PictureWidgetPersistenceManager(Context context) {
+	public PuppyFramePersistenceManager(Context context) {
 		this.sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_prefs_name), Context.MODE_PRIVATE);
 	}
 

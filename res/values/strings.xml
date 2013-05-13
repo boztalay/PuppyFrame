@@ -1,10 +1,10 @@
 <resources>
 
-    <string name="app_name">PictureWidget</string>
-    <string name="image_content_description">Picture Widget Picture</string>
+    <string name="app_name">PuppyFrame</string>
+    <string name="image_content_description">PuppyFrame Picture</string>
     <string name="album_thumbnail_content_description">Album Thumbnail</string>
     
-    <string name="shared_prefs_name">PictureWidgetPersistencePrefs</string>
+    <string name="shared_prefs_name">PuppyFramePersistencePrefs</string>
     
     <string name="albums_title">Albums</string>
     

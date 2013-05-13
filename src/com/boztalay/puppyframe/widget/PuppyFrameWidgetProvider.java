@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.widget;
+package com.boztalay.puppyframe.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,18 +8,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
-import com.boztalay.picturewidget.R;
-import com.boztalay.picturewidget.configuration.PictureWidgetConfigurationActivity;
+import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.configuration.PuppyFrameAlbumsActivity;
 
-public class PictureWidgetProvider extends AppWidgetProvider {
+public class PuppyFrameWidgetProvider extends AppWidgetProvider {
 
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 
 		for(int i = 0; i < appWidgetIds.length; i++) {
-			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.picture_widget);
-		    Intent configIntent = new Intent(context, PictureWidgetConfigurationActivity.class);
+			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.puppyframe_widget);
+		    Intent configIntent = new Intent(context, PuppyFrameAlbumsActivity.class);
 		    
 		    Uri.withAppendedPath(Uri.parse("pw" + i + "://widget/id/"), String.valueOf(appWidgetIds[i]));
 		    configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);

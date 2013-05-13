@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.configuration;
+package com.boztalay.puppyframe.configuration;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -8,14 +8,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.RemoteViews;
 
-import com.boztalay.picturewidget.R;
+import com.boztalay.puppyframe.R;
 
-public class PictureWidgetConfigurationActivity extends Activity {
+public class PuppyFrameAlbumsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_configuration);
+		setContentView(R.layout.activity_albums);
 		getActionBar().setTitle(getString(R.string.albums_title));
 		
 		int appWidgetId = getAppWidgetId();
@@ -57,7 +57,7 @@ public class PictureWidgetConfigurationActivity extends Activity {
 	
 	private void updateAppWidget(int appWidgetId) {
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-		RemoteViews views = new RemoteViews(getPackageName(), R.layout.picture_widget);
+		RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 }

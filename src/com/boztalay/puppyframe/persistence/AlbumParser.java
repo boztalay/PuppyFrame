@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.persistence;
+package com.boztalay.puppyframe.persistence;
 
 import org.json.JSONArray;
 import org.json.JSONException;
