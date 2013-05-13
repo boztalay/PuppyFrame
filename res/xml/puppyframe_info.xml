@@ -4,7 +4,7 @@
     android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
     android:initialLayout="@layout/puppyframe_widget"
-    android:configure="com.boztalay.puppyframe.configuration.PuppyFrameAlbumsActivity" 
+    android:configure="com.boztalay.puppyframe.configuration.AlbumsActivity" 
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>

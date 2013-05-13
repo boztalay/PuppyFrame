@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
@@ -14,8 +15,9 @@ import android.widget.TextView;
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
-public class PuppyFrameAlbumsActivity extends Activity {
-
+public class AlbumsActivity extends Activity {
+	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,5 +94,27 @@ public class PuppyFrameAlbumsActivity extends Activity {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.configuration_menu, menu);
 	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+		    case R.id.add_new_album_menu_action:
+		        Intent editAlbumIntent = new Intent(this, EditAlbumActivity.class);
+		        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
+		        return true;
+		    case R.id.settings_menu_action:
+		    	return true;
+		}
+	    return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == RESULT_OK) {
+			if(resultCode == EDIT_ALBUM_ACTIVITY_REQUEST_CODE) {
+				//TODO refresh the current album and gridview
+			}
+		}
 	}
 }
