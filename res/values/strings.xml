@@ -7,7 +7,10 @@
     <string name="shared_prefs_name">PuppyFramePersistencePrefs</string>
     
     <string name="albums_title">Albums</string>
+    <string name="edit_album_title">Edit Album</string>
+    <string name="add_album_title">Add Album</string>
     
     <string name="add_new_album_menu_title">New Album</string>
     <string name="settings_menu_title">Settings</string>
+    <string name="done_editing_menu_title">Done Editing</string>
 </resources>

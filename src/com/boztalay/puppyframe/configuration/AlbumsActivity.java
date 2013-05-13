@@ -8,31 +8,36 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
 public class AlbumsActivity extends Activity {
 	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
 	
+	private PuppyFramePersistenceManager persistenceManager;
+	private Album currentAlbum;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_albums);
+		getActionBar().setTitle(getString(R.string.albums_title));
 		
-		setUpViewsAndTitle();
+		persistenceManager = new PuppyFramePersistenceManager(this);
+		
+		setUpViews();
 		prepareAndUpdateWidget();
 		
 		//TODO make sure you update the widget before exiting!
 	}
 	
-	private void setUpViewsAndTitle() {
-		getActionBar().setTitle(getString(R.string.albums_title));
-		
-		PuppyFramePersistenceManager persistenceManager = new PuppyFramePersistenceManager(this);
+	private void setUpViews() {
 		if(persistenceManager.getAlbumIds().size() == 0) {
 			setUpViewsForNoAlbums();
 		} else {
@@ -41,6 +46,8 @@ public class AlbumsActivity extends Activity {
 	}
 	
 	private void setUpViewsForNoAlbums() {
+		currentAlbum = null;
+		
 		View currentAlbum = findViewById(R.id.current_album);
 		
 		ImageView currentAlbumThumbnail = (ImageView)currentAlbum.findViewById(R.id.album_thumbnail);
@@ -48,6 +55,22 @@ public class AlbumsActivity extends Activity {
 		
 		TextView currentAlbumTitle = (TextView)currentAlbum.findViewById(R.id.album_title);
 		currentAlbumTitle.setText("Couldn't find any albums!");
+		
+		currentAlbum.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startEditAlbumActivity();
+			}
+		});
+	}
+	
+	private void startEditAlbumActivity() {
+		Intent editAlbumIntent = new Intent(AlbumsActivity.this, EditAlbumActivity.class);
+		if(currentAlbum != null) {
+			editAlbumIntent.putExtra(EditAlbumActivity.ALBUM_ID_KEY, currentAlbum.getId());
+		}
+		
+        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
 	}
 	
 	private void setUpViewsForAlbums() {
@@ -92,7 +115,7 @@ public class AlbumsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.configuration_menu, menu);
+	    inflater.inflate(R.menu.albums_menu, menu);
 	    return true;
 	}
 	
@@ -100,8 +123,7 @@ public class AlbumsActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 		    case R.id.add_new_album_menu_action:
-		        Intent editAlbumIntent = new Intent(this, EditAlbumActivity.class);
-		        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
+		    	startEditAlbumActivity();
 		        return true;
 		    case R.id.settings_menu_action:
 		    	return true;
