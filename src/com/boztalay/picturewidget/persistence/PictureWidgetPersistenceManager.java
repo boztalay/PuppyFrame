@@ -9,8 +9,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.boztalay.picturewidget.R;
-import com.boztalay.picturewidget.persistence.album.Album;
-import com.boztalay.picturewidget.persistence.album.AlbumParser;
 
 public class PictureWidgetPersistenceManager {
 	private static final String ALBUM_IDS_KEY = "albumIds";

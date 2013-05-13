@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.persistence.album;
+package com.boztalay.picturewidget.persistence;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.boztalay.picturewidget.persistence.album;
+package com.boztalay.picturewidget.persistence;
 
 import org.json.JSONArray;
 import org.json.JSONException;
