@@ -16,7 +16,7 @@ public class PictureWidgetConfigurationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
-		getActionBar().setTitle("Albums");
+		getActionBar().setTitle(getString(R.string.albums_title));
 		
 		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
