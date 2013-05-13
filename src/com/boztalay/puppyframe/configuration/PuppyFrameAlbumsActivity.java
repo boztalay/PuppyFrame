@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
 public class PuppyFrameAlbumsActivity extends Activity {
 
@@ -16,21 +20,43 @@ public class PuppyFrameAlbumsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_albums);
-		getActionBar().setTitle(getString(R.string.albums_title));
 		
-		int appWidgetId = getAppWidgetId();
-		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
-		updateAppWidget(appWidgetId);
-		setResult(RESULT_OK, configurationResult);
+		setUpViewsAndTitle();
+		prepareAndUpdateWidget();
 		
 		//TODO make sure you update the widget before exiting!
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.configuration_menu, menu);
-	    return true;
+	private void setUpViewsAndTitle() {
+		getActionBar().setTitle(getString(R.string.albums_title));
+		
+		PuppyFramePersistenceManager persistenceManager = new PuppyFramePersistenceManager(this);
+		if(persistenceManager.getAlbumIds().size() == 0) {
+			setUpViewsForNoAlbums();
+		} else {
+			setUpViewsForAlbums();
+		}
+	}
+	
+	private void setUpViewsForNoAlbums() {
+		View currentAlbum = findViewById(R.id.current_album);
+		
+		ImageView currentAlbumThumbnail = (ImageView)currentAlbum.findViewById(R.id.album_thumbnail);
+		currentAlbumThumbnail.setImageResource(R.drawable.missing_picture_default);
+		
+		TextView currentAlbumTitle = (TextView)currentAlbum.findViewById(R.id.album_title);
+		currentAlbumTitle.setText("Couldn't find any albums!");
+	}
+	
+	private void setUpViewsForAlbums() {
+		
+	}
+	
+	private void prepareAndUpdateWidget() {
+		int appWidgetId = getAppWidgetId();
+		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
+		updateAppWidget(appWidgetId);
+		setResult(RESULT_OK, configurationResult);
 	}
 	
 	private int getAppWidgetId() {
@@ -59,5 +85,12 @@ public class PuppyFrameAlbumsActivity extends Activity {
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.configuration_menu, menu);
+	    return true;
 	}
 }
