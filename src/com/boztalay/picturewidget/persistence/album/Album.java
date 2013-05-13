@@ -2,13 +2,13 @@ package com.boztalay.picturewidget.persistence.album;
 
 import java.util.ArrayList;
 
-public class PictureWidgetAlbum {
+public class Album {
 	private String id;
 	private String title;
 	private String thumbnailPath;
 	private ArrayList<String> imagePaths;
 	
-	public PictureWidgetAlbum(String id, String title, String thumbnailPath) {
+	public Album(String id, String title, String thumbnailPath) {
 		this.id = id;
 		this.title = title;
 		this.thumbnailPath = thumbnailPath;

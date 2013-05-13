@@ -4,16 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PictureWidgetAlbumParser {
+public class AlbumParser {
 	private static final String ID_JSON_KEY = "id";
 	private static final String	TITLE_JSON_KEY = "title";
 	private static final String THUMBNAIL_PATH_JSON_KEY = "thumbnailPath";
 	private static final String IMAGE_PATHS_JSON_KEY = "imagePaths";
 	
-	public static PictureWidgetAlbum parseFromJsonRepresentation(String jsonRepresentation) {
+	public static Album parseFromJsonRepresentation(String jsonRepresentation) {
 		try {
 			JSONObject albumJson = new JSONObject(jsonRepresentation);
-			PictureWidgetAlbum album = new PictureWidgetAlbum(albumJson.getString(ID_JSON_KEY),
+			Album album = new Album(albumJson.getString(ID_JSON_KEY),
 															  albumJson.getString(TITLE_JSON_KEY),
 															  albumJson.getString(THUMBNAIL_PATH_JSON_KEY));
 			
@@ -31,7 +31,7 @@ public class PictureWidgetAlbumParser {
 		}
 	}
 	
-	public static String makeJsonRepresentation(PictureWidgetAlbum album) {
+	public static String makeJsonRepresentation(Album album) {
 		JSONObject albumJson = new JSONObject();
 		
 		try {

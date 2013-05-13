@@ -9,8 +9,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.boztalay.picturewidget.R;
-import com.boztalay.picturewidget.persistence.album.PictureWidgetAlbum;
-import com.boztalay.picturewidget.persistence.album.PictureWidgetAlbumParser;
+import com.boztalay.picturewidget.persistence.album.Album;
+import com.boztalay.picturewidget.persistence.album.AlbumParser;
 
 public class PictureWidgetPersistenceManager {
 	private static final String ALBUM_IDS_KEY = "albumIds";
@@ -19,7 +19,7 @@ public class PictureWidgetPersistenceManager {
 	private SharedPreferences sharedPrefs;
 
 	private Set<String> albumIds;
-	private Map<String, PictureWidgetAlbum> albums;
+	private Map<String, Album> albums;
 
 	public PictureWidgetPersistenceManager(Context context) {
 		this.sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_prefs_name), Context.MODE_PRIVATE);
@@ -40,9 +40,9 @@ public class PictureWidgetPersistenceManager {
 		}
 	}
 
-	public PictureWidgetAlbum getAlbumWithId(String albumId) {
+	public Album getAlbumWithId(String albumId) {
 		if(albums == null) {
-			albums = new HashMap<String, PictureWidgetAlbum>();
+			albums = new HashMap<String, Album>();
 		}
 
 		if(albums.containsKey(albumId)) {
@@ -53,14 +53,14 @@ public class PictureWidgetPersistenceManager {
 				throw new RuntimeException("Couldn't find JSON stored for album " + albumId);
 			}
 
-			PictureWidgetAlbum album = PictureWidgetAlbumParser.parseFromJsonRepresentation(albumJson);
+			Album album = AlbumParser.parseFromJsonRepresentation(albumJson);
 			albums.put(albumId, album);
 			
 			return album;
 		}
 	}
 	
-	public void saveAlbum(PictureWidgetAlbum album) {
+	public void saveAlbum(Album album) {
 		loadAlbumIdsFromSharedPrefsIfNeeded();
 		
 		if(!albumIds.contains(album.getId())) {
@@ -68,12 +68,12 @@ public class PictureWidgetPersistenceManager {
 		}
 		albums.put(album.getId(), album);
 		
-		sharedPrefs.edit().putString(album.getId(), PictureWidgetAlbumParser.makeJsonRepresentation(album))
+		sharedPrefs.edit().putString(album.getId(), AlbumParser.makeJsonRepresentation(album))
 						  .putStringSet(ALBUM_IDS_KEY, albumIds)
 						  .commit();
 	}
 	
-	public void setCurrentAlbum(PictureWidgetAlbum album) {
+	public void setCurrentAlbum(Album album) {
 		sharedPrefs.edit().putString(CURRENT_ALBUM_KEY, album.getId()).commit();
 	}
 	

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.boztalay.picturewidget.R;
@@ -14,6 +15,8 @@ public class PictureWidgetConfigurationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
+		
+		Log.d("PictureWidget", "onCreate called!");
 		
 		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
@@ -32,6 +35,10 @@ public class PictureWidgetConfigurationActivity extends Activity {
 		}
 
 		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+		if(appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+			throw new RuntimeException("Couldn't find the widget id!");
+		}
+		
 		return appWidgetId;
 	}
 
