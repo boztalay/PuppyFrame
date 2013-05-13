@@ -28,7 +28,7 @@ public class PictureWidgetConfigurationActivity extends Activity {
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();
 		if(extras == null) {
-			throw new RuntimeException(getString(R.string.no_appwidget_id_error));
+			throw new RuntimeException("Couldn't find the widget id!");
 		}
 
 		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
