@@ -5,4 +5,7 @@
     <string name="album_thumbnail_content_description">Album Thumbnail</string>
     
     <string name="shared_prefs_name">PictureWidgetPersistencePrefs</string>
+    
+    <string name="add_new_album_menu_title">New Album</string>
+    <string name="settings_menu_title">Settings</string>
 </resources>

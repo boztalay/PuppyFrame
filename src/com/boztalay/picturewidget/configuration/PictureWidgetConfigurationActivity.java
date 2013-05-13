@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.RemoteViews;
 
 import com.boztalay.picturewidget.R;
@@ -14,14 +16,21 @@ public class PictureWidgetConfigurationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configuration);
+		getActionBar().setTitle("Albums");
 		
 		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
-		
 		updateAppWidget(appWidgetId);
-		
 		setResult(RESULT_OK, configurationResult);
-//		finish();
+		
+		//TODO make sure you update the widget before exiting!
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.configuration_menu, menu);
+	    return true;
 	}
 	
 	private int getAppWidgetId() {
