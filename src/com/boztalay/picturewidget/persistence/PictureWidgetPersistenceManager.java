@@ -14,6 +14,7 @@ import com.boztalay.picturewidget.persistence.album.PictureWidgetAlbumParser;
 
 public class PictureWidgetPersistenceManager {
 	private static final String ALBUM_IDS_KEY = "albumIds";
+	private static final String CURRENT_ALBUM_KEY = "currentAlbum";
 
 	private SharedPreferences sharedPrefs;
 
@@ -70,5 +71,13 @@ public class PictureWidgetPersistenceManager {
 		sharedPrefs.edit().putString(album.getId(), PictureWidgetAlbumParser.makeJsonRepresentation(album))
 						  .putStringSet(ALBUM_IDS_KEY, albumIds)
 						  .commit();
+	}
+	
+	public void setCurrentAlbum(PictureWidgetAlbum album) {
+		sharedPrefs.edit().putString(CURRENT_ALBUM_KEY, album.getId()).commit();
+	}
+	
+	public String getCurrentAlbumId() {
+		return sharedPrefs.getString(CURRENT_ALBUM_KEY, null);
 	}
 }
