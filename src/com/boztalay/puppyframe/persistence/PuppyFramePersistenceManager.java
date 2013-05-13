@@ -21,6 +21,7 @@ public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedP
 
 	public PuppyFramePersistenceManager(Context context) {
 		this.sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_prefs_name), Context.MODE_PRIVATE);
+		this.sharedPrefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
 	public Set<String> getAlbumIds() {
@@ -73,6 +74,17 @@ public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedP
 		albums.put(album.getId(), album);
 		
 		sharedPrefs.edit().putString(album.getId(), AlbumParser.makeJsonRepresentation(album))
+						  .putStringSet(ALBUM_IDS_KEY, albumIds)
+						  .commit();
+	}
+	
+	public void deleteAlbum(Album album) {
+		loadAlbumIdsFromSharedPrefsIfNeeded();
+		
+		albumIds.remove(album.getId());
+		albums.remove(album);
+		
+		sharedPrefs.edit().remove(album.getId())
 						  .putStringSet(ALBUM_IDS_KEY, albumIds)
 						  .commit();
 	}
