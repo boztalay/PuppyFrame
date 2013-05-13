@@ -1,6 +1,5 @@
 package com.boztalay.picturewidget.persistence;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -10,7 +9,7 @@ import android.content.SharedPreferences;
 
 import com.boztalay.picturewidget.R;
 
-public class PictureWidgetPersistenceManager {
+public class PictureWidgetPersistenceManager implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private static final String ALBUM_IDS_KEY = "albumIds";
 	private static final String CURRENT_ALBUM_KEY = "currentAlbum";
 
@@ -18,6 +17,7 @@ public class PictureWidgetPersistenceManager {
 
 	private Set<String> albumIds;
 	private Map<String, Album> albums;
+	private String currentAlbum;
 
 	public PictureWidgetPersistenceManager(Context context) {
 		this.sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_prefs_name), Context.MODE_PRIVATE);
@@ -31,31 +31,37 @@ public class PictureWidgetPersistenceManager {
 	
 	private void loadAlbumIdsFromSharedPrefsIfNeeded() {
 		if(albumIds == null) {
-			albumIds = sharedPrefs.getStringSet(ALBUM_IDS_KEY, null);
-			if(albumIds == null) {
-				albumIds = new HashSet<String>();
-			}
+			forceLoadAlbumIdsFromSharedPrefs();
+		}
+	}
+	
+	private void forceLoadAlbumIdsFromSharedPrefs() {
+		albumIds = sharedPrefs.getStringSet(ALBUM_IDS_KEY, null);
+		if(albumIds == null) {
+			albumIds = new HashSet<String>();
 		}
 	}
 
 	public Album getAlbumWithId(String albumId) {
-		if(albums == null) {
-			albums = new HashMap<String, Album>();
-		}
+		loadAlbumIdsFromSharedPrefsIfNeeded();
 
 		if(albums.containsKey(albumId)) {
 			return albums.get(albumId);
 		} else {
-			String albumJson = sharedPrefs.getString(albumId, null);
-			if(albumJson == null) {
-				throw new RuntimeException("Couldn't find JSON stored for album " + albumId);
-			}
-
-			Album album = AlbumParser.parseFromJsonRepresentation(albumJson);
-			albums.put(albumId, album);
-			
-			return album;
+			return loadAlbumWithIdFromSharedPrefsAndUpdateWorkingCopy(albumId);
 		}
+	}
+	
+	private Album loadAlbumWithIdFromSharedPrefsAndUpdateWorkingCopy(String albumId) {
+		String albumJson = sharedPrefs.getString(albumId, null);
+		if(albumJson == null) {
+			throw new RuntimeException("Couldn't find JSON stored for album " + albumId);
+		}
+
+		Album album = AlbumParser.parseFromJsonRepresentation(albumJson);
+		albums.put(albumId, album);
+		
+		return album;
 	}
 	
 	public void saveAlbum(Album album) {
@@ -76,6 +82,25 @@ public class PictureWidgetPersistenceManager {
 	}
 	
 	public String getCurrentAlbumId() {
-		return sharedPrefs.getString(CURRENT_ALBUM_KEY, null);
+		if(currentAlbum == null) {
+			forceLoadCurrentAlbumFromSharedPrefs();
+		}
+		
+		return currentAlbum;
+	}
+	
+	private void forceLoadCurrentAlbumFromSharedPrefs() {
+		currentAlbum = sharedPrefs.getString(CURRENT_ALBUM_KEY, null);
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		if(key.equals(ALBUM_IDS_KEY)) {
+			forceLoadAlbumIdsFromSharedPrefs();
+		} else if(key.equals(CURRENT_ALBUM_KEY)) {
+			forceLoadCurrentAlbumFromSharedPrefs();
+		} else if(albumIds.contains(key)) {
+			loadAlbumWithIdFromSharedPrefsAndUpdateWorkingCopy(key);
+		}
 	}
 }
