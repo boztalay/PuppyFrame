@@ -1,29 +1,29 @@
 package com.boztalay.puppyframe.configuration;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
-
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class AlbumsActivity extends Activity {
 	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
-	private static final int FADE_DURATION_MILLIS = 100;
+	private static final int FADE_DURATION_MILLIS = 75;
 	
 	private PuppyFramePersistenceManager persistenceManager;
 	private Album currentAlbum;
@@ -32,11 +32,10 @@ public class AlbumsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_albums);
-		getActionBar().setTitle(getString(R.string.albums_title));
-		
+
 		persistenceManager = new PuppyFramePersistenceManager(this);
-		
-		setUpViews();
+
+        setUpViewsAndTitle();
 		prepareAndUpdateWidget();
 		
 		initializeUniversalImageLoader();
@@ -44,7 +43,12 @@ public class AlbumsActivity extends Activity {
 		//TODO make sure you update the widget before exiting!
 	}
 	
-	private void setUpViews() {
+	private void setUpViewsAndTitle() {
+        ActionBar actionBar = getActionBar();
+        if(actionBar != null) {
+            actionBar.setTitle(getString(R.string.albums_title));
+        }
+
 		if(persistenceManager.getAlbumIds().size() == 0) {
 			setUpViewsForNoAlbums();
 		} else {
@@ -115,14 +119,17 @@ public class AlbumsActivity extends Activity {
 	
 	private void updateAppWidget(int appWidgetId) {
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-		RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
-		appWidgetManager.updateAppWidget(appWidgetId, views);
+        if(appWidgetManager != null) {
+            RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+        }
 	}
 	
 	private void initializeUniversalImageLoader() {
 		DisplayImageOptions displayOptions = new DisplayImageOptions.Builder()
 																	.cacheInMemory()
 																	.displayer(new FadeInBitmapDisplayer(FADE_DURATION_MILLIS))
+                                                                    .showImageForEmptyUri(R.drawable.missing_picture_default)
 																	.showImageOnFail(R.drawable.missing_picture_default)
 																	.build();
 		
@@ -135,8 +142,7 @@ public class AlbumsActivity extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.albums_menu, menu);
+        getMenuInflater().inflate(R.menu.albums_menu, menu);
 	    return true;
 	}
 	

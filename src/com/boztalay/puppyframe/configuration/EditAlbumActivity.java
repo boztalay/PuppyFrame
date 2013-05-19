@@ -3,15 +3,13 @@ package com.boztalay.puppyframe.configuration;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.GridView;
-
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
@@ -20,7 +18,7 @@ public class EditAlbumActivity extends Activity {
 	public static final String ALBUM_ID_KEY = "albumId";
 
 	public enum EditMode {
-		EDITING, ADDING;
+		EDITING, ADDING
 	}
 
 	private PuppyFramePersistenceManager persistenceManager;
@@ -87,8 +85,7 @@ public class EditAlbumActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.edit_menu, menu);
+        getMenuInflater().inflate(R.menu.edit_menu, menu);
 		return true;
 	}
 
@@ -111,8 +108,12 @@ public class EditAlbumActivity extends Activity {
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
-				//TODO check for length
-				album.setTitle(input.getText().toString());
+                Editable editable = input.getText();
+				if(editable == null || editable.length() == 0) {
+                    return;
+                }
+
+				album.setTitle(editable.toString());
 				persistenceManager.saveAlbum(album);
 				setResult(RESULT_OK);
 				finish();

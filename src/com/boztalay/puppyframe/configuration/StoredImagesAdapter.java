@@ -3,8 +3,10 @@ package com.boztalay.puppyframe.configuration;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.ImageColumns;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.ImageView;
 
 import com.boztalay.puppyframe.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class StoredImagesAdapter extends BaseAdapter {
 	private static final String FILE_PATH_PREFIX = "file://";
@@ -33,7 +37,7 @@ public class StoredImagesAdapter extends BaseAdapter {
     private void setUpCursor(Context context) throws PuppyFrameImageLoadingException {
         ContentResolver cr = context.getContentResolver();
 
-        String[] columns = new String[] { ImageColumns._ID, ImageColumns.TITLE, ImageColumns.DATA };
+        String[] columns = new String[] { ImageColumns.DATA };
         cursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null, null, null);
         if(cursor == null) {
             throw new PuppyFrameImageLoadingException();
@@ -68,7 +72,27 @@ public class StoredImagesAdapter extends BaseAdapter {
 		}
 
 		String imagePath = FILE_PATH_PREFIX + getItem(position);
-		ImageLoader.getInstance().displayImage(imagePath, (ImageView)convertView);
+		ImageLoader.getInstance().displayImage(imagePath, (ImageView)convertView, new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String s, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String s, View view, FailReason failReason) {
+                Log.d("PuppyFrame", "Loading failed for path: " + s);
+            }
+
+            @Override
+            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void onLoadingCancelled(String s, View view) {
+
+            }
+        });
 
 		return convertView;
 	}
