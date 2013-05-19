@@ -16,9 +16,14 @@ import android.widget.TextView;
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class AlbumsActivity extends Activity {
 	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
+	private static final int FADE_DURATION_MILLIS = 100;
 	
 	private PuppyFramePersistenceManager persistenceManager;
 	private Album currentAlbum;
@@ -33,6 +38,8 @@ public class AlbumsActivity extends Activity {
 		
 		setUpViews();
 		prepareAndUpdateWidget();
+		
+		initializeUniversalImageLoader();
 		
 		//TODO make sure you update the widget before exiting!
 	}
@@ -110,6 +117,20 @@ public class AlbumsActivity extends Activity {
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
 		RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
+	}
+	
+	private void initializeUniversalImageLoader() {
+		DisplayImageOptions displayOptions = new DisplayImageOptions.Builder()
+																	.cacheInMemory()
+																	.displayer(new FadeInBitmapDisplayer(FADE_DURATION_MILLIS))
+																	.showImageOnFail(R.drawable.missing_picture_default)
+																	.build();
+		
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+																	  .defaultDisplayImageOptions(displayOptions)
+																	  .build();
+		
+		ImageLoader.getInstance().init(config);
 	}
 	
 	@Override

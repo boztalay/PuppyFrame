@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-	<GridView
-	    android:id="@+id/pictures_grid"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:numColumns="3" />
-    
+
+    <GridView
+        android:id="@+id/pictures_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="5dp"
+        android:numColumns="3"
+		android:smoothScrollbar="true"      
+        android:verticalSpacing="5dp" />
+
 </LinearLayout>
