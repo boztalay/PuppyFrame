@@ -136,12 +136,7 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
                 }
 
 				album.setTitle(editable.toString());
-                album.setThumbnailPath(album.getImagePaths().get(0));
-				persistenceManager.saveAlbum(album);
-                persistenceManager.setCurrentAlbum(album);
-
-				setResult(RESULT_OK);
-				finish();
+                saveAlbumAndExit();
 			}
 		});
 		alert.setNegativeButton("Cancel", null);
@@ -149,15 +144,19 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 		alert.show();
 	}
 
+    private void saveAlbumAndExit() {
+        album.setThumbnailPath(album.getImagePaths().get(album.getImagePaths().size() - 1));
+        persistenceManager.saveAlbum(album);
+        persistenceManager.setCurrentAlbum(album);
+
+        setResult(RESULT_OK);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         if(editingMode == EditMode.EDITING) {
-            album.setThumbnailPath(album.getImagePaths().get(0));
-            persistenceManager.saveAlbum(album);
-            persistenceManager.setCurrentAlbum(album);
-
-            setResult(RESULT_OK);
-            finish();
+            saveAlbumAndExit();
         }
     }
 }

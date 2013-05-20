@@ -19,7 +19,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class AlbumsActivity extends Activity implements AdapterView.OnItemClickListener {
-	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
+	private static final int EDIT_ALBUM_ACTIVITY_EDIT_REQUEST_CODE = 1;
+    private static final int EDIT_ALBUM_ACTIVITY_ADD_REQUEST_CODE = 2;
 	private static final int FADE_DURATION_MILLIS = 75;
 	
 	private PuppyFramePersistenceManager persistenceManager;
@@ -82,12 +83,12 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 			editAlbumIntent.putExtra(EditAlbumActivity.ALBUM_ID_KEY, currentAlbum.getId());
 		}
 		
-        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
+        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_EDIT_REQUEST_CODE);
 	}
 
     private void startEditAlbumActivityForNewAlbum() {
         Intent editAlbumIntent = new Intent(AlbumsActivity.this, EditAlbumActivity.class);
-        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
+        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_ADD_REQUEST_CODE);
     }
 
     private void setUpViewsForAlbums() {
@@ -191,10 +192,12 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(requestCode == EDIT_ALBUM_ACTIVITY_REQUEST_CODE) {
-			if(resultCode == RESULT_OK) {
+        if(resultCode == RESULT_OK) {
+            if(requestCode == EDIT_ALBUM_ACTIVITY_ADD_REQUEST_CODE) {
                 refreshAndUpdateEverything();
-			}
-		}
+            } else if(requestCode == EDIT_ALBUM_ACTIVITY_EDIT_REQUEST_CODE) {
+                setUpViewsForAlbums();
+            }
+        }
 	}
 }

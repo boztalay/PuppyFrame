@@ -64,6 +64,7 @@ public class AlbumsAdapter extends BaseAdapter {
         ImageView albumThumbnail = (ImageView) convertView.findViewById(R.id.album_thumbnail);
         TextView albumTitle = (TextView) convertView.findViewById(R.id.album_title);
 
+        albumThumbnail.setImageDrawable(null);
         ImageLoader.getInstance().displayImage(album.getThumbnailPath(), albumThumbnail);
         albumTitle.setText(album.getTitle());
 
