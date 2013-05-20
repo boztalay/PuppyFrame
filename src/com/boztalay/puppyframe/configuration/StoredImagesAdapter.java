@@ -14,13 +14,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.persistence.Album;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class StoredImagesAdapter extends BaseAdapter {
 	private static final String FILE_PATH_PREFIX = "file://";
-	
+
+    private Album album;
+
 	private Cursor cursor;
 	private int pathColumnIndex;
 
@@ -28,8 +31,9 @@ public class StoredImagesAdapter extends BaseAdapter {
 
     public class PuppyFrameImageLoadingException extends Exception { }
 
-	public StoredImagesAdapter(Context context) throws PuppyFrameImageLoadingException {
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	public StoredImagesAdapter(Context context, Album album) throws PuppyFrameImageLoadingException {
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.album = album;
 
 	    setUpCursor(context);
 	}
@@ -54,7 +58,8 @@ public class StoredImagesAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int position) {
 		cursor.moveToPosition(position);
-		return cursor.getString(pathColumnIndex);
+        String pathWithFilePrefix = FILE_PATH_PREFIX + cursor.getString(pathColumnIndex);
+		return pathWithFilePrefix;
 	}
 
 	@Override
@@ -67,32 +72,14 @@ public class StoredImagesAdapter extends BaseAdapter {
 		if(convertView == null) {
 			convertView = layoutInflater.inflate(R.layout.simple_image_view, parent, false);
 		} else {
-			ImageLoader.getInstance().cancelDisplayTask((ImageView)convertView);
-			((ImageView)convertView).setImageDrawable(null);
+			ImageLoader.getInstance().cancelDisplayTask((SelectableImageView)convertView);
+			((SelectableImageView)convertView).setImageDrawable(null);
 		}
 
-		String imagePath = FILE_PATH_PREFIX + getItem(position);
-		ImageLoader.getInstance().displayImage(imagePath, (ImageView)convertView, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String s, View view) {
+		String imagePath = (String) getItem(position);
+		ImageLoader.getInstance().displayImage(imagePath, (SelectableImageView)convertView);
 
-            }
-
-            @Override
-            public void onLoadingFailed(String s, View view, FailReason failReason) {
-                Log.d("PuppyFrame", "Loading failed for path: " + s);
-            }
-
-            @Override
-            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String s, View view) {
-
-            }
-        });
+        ((SelectableImageView)convertView).setChecked(album.getImagePaths().contains(imagePath));
 
 		return convertView;
 	}

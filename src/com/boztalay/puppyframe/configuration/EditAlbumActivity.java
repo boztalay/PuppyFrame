@@ -8,16 +8,19 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
-public class EditAlbumActivity extends Activity {
+public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener {
 	public static final String ALBUM_ID_KEY = "albumId";
 
-	public enum EditMode {
+    public enum EditMode {
 		EDITING, ADDING
 	}
 
@@ -61,7 +64,7 @@ public class EditAlbumActivity extends Activity {
         }
 
         try {
-		    storedImagesAdapter = new StoredImagesAdapter(EditAlbumActivity.this);
+		    storedImagesAdapter = new StoredImagesAdapter(EditAlbumActivity.this, album);
         } catch (StoredImagesAdapter.PuppyFrameImageLoadingException e) {
             showProblemLoadingDialog();
         }
@@ -69,6 +72,7 @@ public class EditAlbumActivity extends Activity {
 		GridView gridView = (GridView) findViewById(R.id.pictures_grid);
 		gridView.setAdapter(storedImagesAdapter);
 		gridView.setFastScrollEnabled(true);
+        gridView.setOnItemClickListener(this);
 	}
 
     private void showProblemLoadingDialog() {
@@ -89,6 +93,18 @@ public class EditAlbumActivity extends Activity {
 		return true;
 	}
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String pathOfImageClicked = (String) parent.getAdapter().getItem(position);
+        if(album.getImagePaths().contains(pathOfImageClicked)) {
+            album.removeImagePath(pathOfImageClicked);
+            ((SelectableImageView)view).setChecked(false);
+        } else {
+            album.addImagePath(pathOfImageClicked);
+            ((SelectableImageView)view).setChecked(true);
+        }
+    }
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
@@ -104,12 +120,14 @@ public class EditAlbumActivity extends Activity {
 		alert.setTitle("Name Your Album");
 
 		final EditText input = new EditText(this);
+        input.setText(album.getTitle());
 		alert.setView(input);
 
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
                 Editable editable = input.getText();
 				if(editable == null || editable.length() == 0) {
+                    Toast.makeText(EditAlbumActivity.this, "You gotta name it something!", Toast.LENGTH_LONG).show();
                     return;
                 }
 

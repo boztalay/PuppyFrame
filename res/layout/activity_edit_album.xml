@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:horizontalSpacing="5dp"
         android:numColumns="3"
-		android:smoothScrollbar="true"      
+		android:smoothScrollbar="true"
         android:verticalSpacing="5dp" />
 
 </LinearLayout>
