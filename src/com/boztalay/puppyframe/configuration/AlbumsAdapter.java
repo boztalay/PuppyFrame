@@ -57,7 +57,7 @@ public class AlbumsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.album_preview_grid_item, parent, false);
+            convertView = layoutInflater.inflate(R.layout.album_preview, parent, false);
         }
 
         Album album = albumsToDisplay.get(position);

@@ -3,21 +3,16 @@ package com.boztalay.puppyframe.configuration;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.ImageColumns;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class StoredImagesAdapter extends BaseAdapter {
 	private static final String FILE_PATH_PREFIX = "file://";
