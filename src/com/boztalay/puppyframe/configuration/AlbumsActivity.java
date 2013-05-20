@@ -16,7 +16,6 @@ import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class AlbumsActivity extends Activity implements AdapterView.OnItemClickListener {
@@ -38,8 +37,6 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
         initializeUniversalImageLoader();
         setUpViewsAndTitle();
 		prepareAndUpdateWidget();
-		
-		//TODO make sure you update the widget before exiting!
 	}
 	
 	private void setUpViewsAndTitle() {
@@ -181,15 +178,22 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        persistenceManager.setCurrentAlbum((Album) parent.getAdapter().getItem(position));
 
+        refreshAndUpdateEverything();
+    }
+
+    private void refreshAndUpdateEverything() {
+        setUpViewsForAlbums();
+        albumsAdapter.refreshAlbums();
+        prepareAndUpdateWidget();
     }
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode == EDIT_ALBUM_ACTIVITY_REQUEST_CODE) {
 			if(resultCode == RESULT_OK) {
-                setUpViewsForAlbums();
-                albumsAdapter.refreshAlbums();
+                refreshAndUpdateEverything();
 			}
 		}
 	}
