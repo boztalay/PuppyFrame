@@ -9,9 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.RemoteViews;
-import android.widget.TextView;
+import android.widget.*;
 import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
@@ -21,12 +19,14 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
-public class AlbumsActivity extends Activity {
+public class AlbumsActivity extends Activity implements AdapterView.OnItemClickListener {
 	private static final int EDIT_ALBUM_ACTIVITY_REQUEST_CODE = 1;
 	private static final int FADE_DURATION_MILLIS = 75;
 	
 	private PuppyFramePersistenceManager persistenceManager;
 	private Album currentAlbum;
+
+    private AlbumsAdapter albumsAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,9 @@ public class AlbumsActivity extends Activity {
 
 		persistenceManager = new PuppyFramePersistenceManager(this);
 
+        initializeUniversalImageLoader();
         setUpViewsAndTitle();
 		prepareAndUpdateWidget();
-		
-		initializeUniversalImageLoader();
 		
 		//TODO make sure you update the widget before exiting!
 	}
@@ -49,30 +48,35 @@ public class AlbumsActivity extends Activity {
             actionBar.setTitle(getString(R.string.albums_title));
         }
 
+        View currentAlbumView = findViewById(R.id.current_album);
+
 		if(persistenceManager.getAlbumIds().size() == 0) {
-			setUpViewsForNoAlbums();
+			setUpViewsForNoAlbums(currentAlbumView);
 		} else {
-			setUpViewsForAlbums();
+			setUpViewsForAlbums(currentAlbumView);
 		}
+
+        currentAlbumView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startEditAlbumActivity();
+            }
+        });
+
+        GridView albumsGrid = (GridView) findViewById(R.id.albums_grid);
+        albumsAdapter = new AlbumsAdapter(this);
+        albumsGrid.setAdapter(albumsAdapter);
+        albumsGrid.setOnItemClickListener(this);
 	}
 	
-	private void setUpViewsForNoAlbums() {
+	private void setUpViewsForNoAlbums(View currentAlbumView) {
 		currentAlbum = null;
 		
-		View currentAlbum = findViewById(R.id.current_album);
-		
-		ImageView currentAlbumThumbnail = (ImageView)currentAlbum.findViewById(R.id.album_thumbnail);
+		ImageView currentAlbumThumbnail = (ImageView)currentAlbumView.findViewById(R.id.album_thumbnail);
 		currentAlbumThumbnail.setImageResource(R.drawable.missing_picture_default);
 		
-		TextView currentAlbumTitle = (TextView)currentAlbum.findViewById(R.id.album_title);
+		TextView currentAlbumTitle = (TextView)currentAlbumView.findViewById(R.id.album_title);
 		currentAlbumTitle.setText("Couldn't find any albums!");
-		
-		currentAlbum.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startEditAlbumActivity();
-			}
-		});
 	}
 	
 	private void startEditAlbumActivity() {
@@ -83,9 +87,26 @@ public class AlbumsActivity extends Activity {
 		
         startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
 	}
+
+    private void startEditAlbumActivityForNewAlbum() {
+        Intent editAlbumIntent = new Intent(AlbumsActivity.this, EditAlbumActivity.class);
+        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_REQUEST_CODE);
+    }
+
+    private void setUpViewsForAlbums() {
+        View currentAlbumView = findViewById(R.id.current_album);
+        setUpViewsForAlbums(currentAlbumView);
+    }
 	
-	private void setUpViewsForAlbums() {
-		
+	private void setUpViewsForAlbums(View currentAlbumView) {
+		String currentAlbumId = persistenceManager.getCurrentAlbumId();
+        currentAlbum = persistenceManager.getAlbumWithId(currentAlbumId);
+
+        ImageView currentAlbumThumbnail = (ImageView)currentAlbumView.findViewById(R.id.album_thumbnail);
+        ImageLoader.getInstance().displayImage(currentAlbum.getThumbnailPath(), currentAlbumThumbnail);
+
+        TextView currentAlbumTitle = (TextView)currentAlbumView.findViewById(R.id.album_title);
+        currentAlbumTitle.setText(currentAlbum.getTitle());
 	}
 	
 	private void prepareAndUpdateWidget() {
@@ -150,19 +171,25 @@ public class AlbumsActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 		    case R.id.add_new_album_menu_action:
-		    	startEditAlbumActivity();
+		    	startEditAlbumActivityForNewAlbum();
 		        return true;
 		    case R.id.settings_menu_action:
 		    	return true;
 		}
 	    return super.onOptionsItemSelected(item);
 	}
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(requestCode == RESULT_OK) {
-			if(resultCode == EDIT_ALBUM_ACTIVITY_REQUEST_CODE) {
-				//TODO refresh the current album and gridview
+		if(requestCode == EDIT_ALBUM_ACTIVITY_REQUEST_CODE) {
+			if(resultCode == RESULT_OK) {
+                setUpViewsForAlbums();
+                albumsAdapter.refreshAlbums();
 			}
 		}
 	}

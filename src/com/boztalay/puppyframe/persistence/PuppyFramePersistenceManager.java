@@ -80,7 +80,9 @@ public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedP
 		}
 		albums.put(album.getId(), album);
 
-		sharedPrefs.edit().putString(album.getId(), AlbumParser.makeJsonRepresentation(album)).putStringSet(ALBUM_IDS_KEY, albumIds).commit();
+		sharedPrefs.edit().putString(album.getId(), AlbumParser.makeJsonRepresentation(album))
+                          .putStringSet(ALBUM_IDS_KEY, albumIds)
+                          .commit();
 	}
 	
 	public Album createNewAlbum(String albumTitle) {

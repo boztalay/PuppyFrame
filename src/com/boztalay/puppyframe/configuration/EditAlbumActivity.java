@@ -109,7 +109,11 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.done_editing_menu_action:
-				createNamingDialog();
+                if(album.getImagePaths().size() == 0) {
+                    Toast.makeText(EditAlbumActivity.this, "Please add at least one picture to this album", Toast.LENGTH_LONG).show();
+                } else {
+				    createNamingDialog();
+                }
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -132,7 +136,10 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
                 }
 
 				album.setTitle(editable.toString());
+                album.setThumbnailPath(album.getImagePaths().get(0));
 				persistenceManager.saveAlbum(album);
+                persistenceManager.setCurrentAlbum(album);
+
 				setResult(RESULT_OK);
 				finish();
 			}
