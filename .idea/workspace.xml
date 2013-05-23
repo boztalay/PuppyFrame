@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="PuppyFrame" />
+        <option name="name" value="Unnamed-0" />
+        <option name="packageNamePattern" value="" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState>
@@ -13,34 +24,50 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="PuppyFrame" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb097ca-b966-44b7-8139-69b325f5b31f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SelectableImageView.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/views/SelectableImageView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SquareImageView.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/views/SquareImageView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/StoredImagesAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/album_preview.xml" afterPath="$PROJECT_DIR$/res/layout/album_preview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/puppyframe_info.xml" afterPath="$PROJECT_DIR$/res/xml/puppyframe_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/puppyframe_widget.xml" afterPath="$PROJECT_DIR$/res/layout/puppyframe_widget.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/simple_image_view.xml" afterPath="$PROJECT_DIR$/res/layout/simple_image_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PuppyFrame.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1368995998028" ignored="false" />
+    <file path="/Dummy.txt" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369120334688" ignored="false" />
     <file path="/fragment.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1368997659831" ignored="false" />
     <file path="/StoredImagesAdapter.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369063703627" ignored="false" />
-    <file path="/EditAlbumActivity.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369091771369" ignored="false" />
-    <file path="/AlbumsActivity.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369091527994" ignored="false" />
+    <file path="/EditAlbumActivity.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369153926885" ignored="false" />
+    <file path="/AlbumsActivity.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369164101722" ignored="false" />
     <file path="/simple_image_view.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369090246747" ignored="false" />
     <file path="/SelectableImageView.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369063152904" ignored="false" />
     <file path="/a.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369027273792" ignored="false" />
     <file path="/colors.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369062583187" ignored="false" />
     <file path="/image_pressed_selector.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369028856069" ignored="false" />
-    <file path="/PuppyFramePersistenceManager.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369065978607" ignored="false" />
-    <file path="/AlbumsAdapter.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369092164809" ignored="false" />
+    <file path="/PuppyFramePersistenceManager.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369165099881" ignored="false" />
+    <file path="/AlbumsAdapter.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369153854079" ignored="false" />
     <file path="/activity_albums.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369090721989" ignored="false" />
     <file path="/album_preview.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369068507918" ignored="false" />
     <file path="/album_preview_grid_item.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369090198713" ignored="false" />
     <file path="/SelectableSquareImageView.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369089902114" ignored="false" />
     <file path="/SquareImageView.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369090115589" ignored="false" />
+    <file path="$PROJECT_DIR$/bin/AndroidManifest.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369114241665" ignored="false" />
+    <file path="/PuppyFrameWidgetProvider.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369120243265" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369120684774" ignored="false" />
+    <file path="/ScreenOnService.java" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369285132504" ignored="false" />
+    <file path="/puppyframe_widget.xml" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369120951912" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +119,23 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" line="152" class="com.boztalay.puppyframe.configuration.editalbum.EditAlbumActivity" package="com.boztalay.puppyframe.configuration.editalbum">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -101,43 +145,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EditAlbumActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java">
+      <file leaf-file-name="PuppyFrameWidgetProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="147" column="89" selection-start="4957" selection-end="4957" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1805#1841#0" expanded="true" />
-                <element signature="e#1935#1970#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AlbumsActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="5" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1668#1700#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AlbumsAdapter.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="44" selection-start="2180" selection-end="2180" vertical-scroll-proportion="0.7425897">
+            <state line="19" column="64" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoredImagesAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/StoredImagesAdapter.java">
+      <file leaf-file-name="ScreenOnService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="69" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="41" column="22" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.22580644">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1090#1360#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,15 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/activity_edit_album.xml" />
-        <option value="$PROJECT_DIR$/res/color/image_presset_selector.xml" />
-        <option value="$PROJECT_DIR$/res/color/image_pressed_selector.xml" />
-        <option value="$PROJECT_DIR$/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/StoredImagesAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" />
-        <option value="$PROJECT_DIR$/res/layout/album_preview.xml" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SquareImageView.java" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SelectableSquareImageView.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SelectableImageView.java" />
         <option value="$PROJECT_DIR$/res/layout/album_preview_grid_item.xml" />
         <option value="$PROJECT_DIR$/res/layout/simple_image_view.xml" />
@@ -176,12 +192,22 @@
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" />
+        <option value="$PROJECT_DIR$/res/xml/puppyframe_info.xml" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java" />
+        <option value="$PROJECT_DIR$/res/layout/puppyframe_widget.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="y" value="-1080" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -244,6 +270,10 @@
               <option name="myItemId" value="puppyframe" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -262,10 +292,6 @@
               <option name="myItemId" value="puppyframe" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="configuration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -278,24 +304,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PuppyFrame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PuppyFrame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -319,7 +327,7 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -478,12 +486,12 @@
       <created>1368992578946</created>
       <updated>1368992578946</updated>
       <workItem from="1368992585583" duration="3363000" />
-      <workItem from="1368995995354" duration="22105000" />
+      <workItem from="1368995995354" duration="39119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25468000" />
+    <option name="totallyTimeSpent" value="42482000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -506,28 +514,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="-1080" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986537" sideWeight="0.67016804" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986537" sideWeight="0.67016804" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14781217" sideWeight="0.675" order="-1" side_tool="false" content_ui="tabs" x="1053" y="-644" width="501" height="97" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.675" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.675" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986537" sideWeight="0.67016804" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39915967" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.315625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2972689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.7027311" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21771611" sideWeight="0.675" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -596,57 +605,13 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/app/ActionBar.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="163" selection-end="163" vertical-scroll-proportion="0.12562814">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/widget/GridView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="722" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="47" selection-start="51" selection-end="59" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="39" selection-start="3074" selection-end="3074" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SelectableImageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="689" selection-end="689" vertical-scroll-proportion="0.63182527">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SquareImageView.java">
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/views/SquareImageView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="45" selection-start="312" selection-end="312" vertical-scroll-proportion="0.23400936">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#633#1021#0" expanded="true" />
-            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#639#1027#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -691,36 +656,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="89" selection-start="4957" selection-end="4957" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1805#1841#0" expanded="true" />
-            <element signature="e#1935#1970#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="5" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1668#1700#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/StoredImagesAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="69" selection-start="2094" selection-end="2094" vertical-scroll-proportion="0.0">
+        <state line="68" column="69" selection-start="2176" selection-end="2176" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/app/Instrumentation.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="44" selection-start="2180" selection-end="2180" vertical-scroll-proportion="0.7425897">
+        <state line="153" column="0" selection-start="7775" selection-end="7775" vertical-scroll-proportion="0.84974957">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/xml/puppyframe_info.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="40" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="93" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="0" selection-start="5254" selection-end="5254" vertical-scroll-proportion="0.694206">
+          <folding>
+            <element signature="e#2053#2089#0" expanded="true" />
+            <element signature="e#2183#2218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="0" selection-start="3729" selection-end="3729" vertical-scroll-proportion="0.9034335">
+          <folding>
+            <element signature="e#687#732#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="29" selection-start="3857" selection-end="3857" vertical-scroll-proportion="0.2532189">
+          <folding>
+            <element signature="e#1825#1857#0" expanded="true" />
+            <element signature="e#2137#2290#0" expanded="true" />
+            <element signature="e#2279#2280#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="55" selection-start="503" selection-end="503" vertical-scroll-proportion="0.2414163">
+          <folding>
+            <element signature="e#378#396#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="64" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/puppyframe_widget.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="17" selection-start="558" selection-end="558" vertical-scroll-proportion="0.35413152">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="22" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.22580644">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1090#1360#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

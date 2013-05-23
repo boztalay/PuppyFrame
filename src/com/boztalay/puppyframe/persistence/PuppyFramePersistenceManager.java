@@ -14,13 +14,10 @@ import com.boztalay.puppyframe.R;
 
 public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private static final String ALBUM_IDS_KEY = "albumIds";
-	private static final String CURRENT_ALBUM_KEY = "currentAlbum";
-
 	private SharedPreferences sharedPrefs;
 
 	private Set<String> albumIds;
 	private Map<String, Album> albums;
-	private String currentAlbum;
 
 	public PuppyFramePersistenceManager(Context context) {
 		this.sharedPrefs = context.getSharedPreferences(context.getString(R.string.shared_prefs_name), Context.MODE_PRIVATE);
@@ -117,28 +114,20 @@ public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedP
 		sharedPrefs.edit().remove(album.getId()).putStringSet(ALBUM_IDS_KEY, albumIds).commit();
 	}
 
-	public void setCurrentAlbum(Album album) {
-		sharedPrefs.edit().putString(CURRENT_ALBUM_KEY, album.getId()).commit();
+	public void setCurrentAlbumForAppWidgetId(Album album, int appWidgetId) {
+		sharedPrefs.edit().putString(String.valueOf(appWidgetId), album.getId()).commit();
 	}
 
-	public String getCurrentAlbumId() {
-		if(currentAlbum == null) {
-			forceLoadCurrentAlbumFromSharedPrefs();
-		}
-
-		return currentAlbum;
-	}
-
-	private void forceLoadCurrentAlbumFromSharedPrefs() {
-		currentAlbum = sharedPrefs.getString(CURRENT_ALBUM_KEY, null);
+	public String getCurrentAlbumIdForAppWidgetId(int appWidgetId) {
+		return sharedPrefs.getString(String.valueOf(appWidgetId), null);
 	}
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        loadAlbumIdsFromSharedPrefsIfNeeded();
+
 		if(key.equals(ALBUM_IDS_KEY)) {
 			forceLoadAlbumIdsFromSharedPrefs();
-		} else if(key.equals(CURRENT_ALBUM_KEY)) {
-			forceLoadCurrentAlbumFromSharedPrefs();
 		} else if(albumIds.contains(key)) {
 			loadAlbumWithIdFromSharedPrefsAndUpdateWorkingCopy(key);
 		}

@@ -13,13 +13,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         
-        <activity android:name="com.boztalay.puppyframe.configuration.AlbumsActivity" >
+        <activity android:name="com.boztalay.puppyframe.configuration.albums.AlbumsActivity" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
         
-        <activity android:name="com.boztalay.puppyframe.configuration.EditAlbumActivity" />
+        <activity android:name="com.boztalay.puppyframe.configuration.editalbum.EditAlbumActivity" />
 
         <receiver android:name="com.boztalay.puppyframe.widget.PuppyFrameWidgetProvider" >
             <intent-filter>
@@ -30,6 +30,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/puppyframe_info" />
         </receiver>
+
+        <service android:name="com.boztalay.puppyframe.widget.ScreenOnService"></service>
     </application>
 
 </manifest>

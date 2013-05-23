@@ -3,8 +3,9 @@
     android:minHeight="40dp"
     android:minResizeWidth="40dp"
     android:minResizeHeight="40dp"
+    android:updatePeriodMillis="21600000"
     android:initialLayout="@layout/puppyframe_widget"
-    android:configure="com.boztalay.puppyframe.configuration.AlbumsActivity" 
+    android:configure="com.boztalay.puppyframe.configuration.albums.AlbumsActivity"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>

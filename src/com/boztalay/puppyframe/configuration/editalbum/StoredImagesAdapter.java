@@ -1,4 +1,4 @@
-package com.boztalay.puppyframe.configuration;
+package com.boztalay.puppyframe.configuration.editalbum;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.configuration.views.SelectableImageView;
 import com.boztalay.puppyframe.persistence.Album;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

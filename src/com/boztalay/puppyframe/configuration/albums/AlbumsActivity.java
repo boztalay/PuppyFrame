@@ -1,4 +1,4 @@
-package com.boztalay.puppyframe.configuration;
+package com.boztalay.puppyframe.configuration.albums;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.configuration.editalbum.EditAlbumActivity;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -27,6 +28,8 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 	private Album currentAlbum;
 
     private AlbumsAdapter albumsAdapter;
+
+    private int appWidgetId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +37,11 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 		setContentView(R.layout.activity_albums);
 
 		persistenceManager = new PuppyFramePersistenceManager(this);
+        appWidgetId = getAppWidgetId();
 
         initializeUniversalImageLoader();
         setUpViewsAndTitle();
-		prepareAndUpdateWidget();
+        prepareAndUpdateWidget();
 	}
 	
 	private void setUpViewsAndTitle() {
@@ -62,7 +66,7 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
         });
 
         GridView albumsGrid = (GridView) findViewById(R.id.albums_grid);
-        albumsAdapter = new AlbumsAdapter(this);
+        albumsAdapter = new AlbumsAdapter(this, appWidgetId);
         albumsGrid.setAdapter(albumsAdapter);
         albumsGrid.setOnItemClickListener(this);
 	}
@@ -79,11 +83,14 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 	
 	private void startEditAlbumActivity() {
 		Intent editAlbumIntent = new Intent(AlbumsActivity.this, EditAlbumActivity.class);
+        editAlbumIntent.putExtra(EditAlbumActivity.APP_WIDGET_ID_KEY, appWidgetId);
+
 		if(currentAlbum != null) {
 			editAlbumIntent.putExtra(EditAlbumActivity.ALBUM_ID_KEY, currentAlbum.getId());
-		}
-		
-        startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_EDIT_REQUEST_CODE);
+            startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_EDIT_REQUEST_CODE);
+		} else {
+            startActivityForResult(editAlbumIntent, EDIT_ALBUM_ACTIVITY_ADD_REQUEST_CODE);
+        }
 	}
 
     private void startEditAlbumActivityForNewAlbum() {
@@ -97,7 +104,7 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
     }
 	
 	private void setUpViewsForAlbums(View currentAlbumView) {
-		String currentAlbumId = persistenceManager.getCurrentAlbumId();
+		String currentAlbumId = persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId);
         currentAlbum = persistenceManager.getAlbumWithId(currentAlbumId);
 
         ImageView currentAlbumThumbnail = (ImageView)currentAlbumView.findViewById(R.id.album_thumbnail);
@@ -108,7 +115,6 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 	}
 	
 	private void prepareAndUpdateWidget() {
-		int appWidgetId = getAppWidgetId();
 		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
 		updateAppWidget(appWidgetId);
 		setResult(RESULT_OK, configurationResult);
@@ -179,7 +185,7 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        persistenceManager.setCurrentAlbum((Album) parent.getAdapter().getItem(position));
+        persistenceManager.setCurrentAlbumForAppWidgetId((Album) parent.getAdapter().getItem(position), appWidgetId);
 
         refreshAndUpdateEverything();
     }

@@ -1,4 +1,4 @@
-package com.boztalay.puppyframe.configuration;
+package com.boztalay.puppyframe.configuration.albums;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,12 +17,14 @@ import java.util.ArrayList;
 public class AlbumsAdapter extends BaseAdapter {
     private PuppyFramePersistenceManager persistenceManager;
     private ArrayList<Album> albumsToDisplay;
+    private int appWidgetId;
 
     private LayoutInflater layoutInflater;
 
-    public AlbumsAdapter(Context context) {
+    public AlbumsAdapter(Context context, int appWidgetId) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        this.appWidgetId = appWidgetId;
         persistenceManager = new PuppyFramePersistenceManager(context);
         refreshAlbums();
     }
@@ -30,7 +32,7 @@ public class AlbumsAdapter extends BaseAdapter {
     public void refreshAlbums() {
         albumsToDisplay = new ArrayList<Album>();
         for(String albumId : persistenceManager.getAlbumIds()) {
-            if(!albumId.equals(persistenceManager.getCurrentAlbumId())) {
+            if(!albumId.equals(persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId))) {
                 Album albumToDisplay = persistenceManager.getAlbumWithId(albumId);
                 albumsToDisplay.add(albumToDisplay);
             }

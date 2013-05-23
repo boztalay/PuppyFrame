@@ -1,4 +1,4 @@
-package com.boztalay.puppyframe.configuration;
+package com.boztalay.puppyframe.configuration.editalbum;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 import com.boztalay.puppyframe.R;
+import com.boztalay.puppyframe.configuration.views.SelectableImageView;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
 public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener {
 	public static final String ALBUM_ID_KEY = "albumId";
+    public static final String APP_WIDGET_ID_KEY = "appWidgetId";
 
     public enum EditMode {
 		EDITING, ADDING
@@ -27,6 +29,7 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	private PuppyFramePersistenceManager persistenceManager;
 	private EditMode editingMode;
 	private Album album;
+    private int appWidgetId;
 	
 	private StoredImagesAdapter storedImagesAdapter;
 
@@ -51,6 +54,8 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 			editingMode = EditMode.ADDING;
 			album = persistenceManager.createNewAlbum("Untitled Album");
 		}
+
+        appWidgetId = getIntent().getIntExtra(APP_WIDGET_ID_KEY, -1);
 	}
 
 	private void setUpViewsAndTitle() {
@@ -147,7 +152,7 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
     private void saveAlbumAndExit() {
         album.setThumbnailPath(album.getImagePaths().get(album.getImagePaths().size() - 1));
         persistenceManager.saveAlbum(album);
-        persistenceManager.setCurrentAlbum(album);
+        persistenceManager.setCurrentAlbumForAppWidgetId(album, appWidgetId);
 
         setResult(RESULT_OK);
         finish();

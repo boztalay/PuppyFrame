@@ -1,4 +1,4 @@
-package com.boztalay.puppyframe.configuration;
+package com.boztalay.puppyframe.configuration.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
