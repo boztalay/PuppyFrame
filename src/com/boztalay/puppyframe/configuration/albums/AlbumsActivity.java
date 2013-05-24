@@ -2,8 +2,11 @@ package com.boztalay.puppyframe.configuration.albums;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +17,7 @@ import com.boztalay.puppyframe.R;
 import com.boztalay.puppyframe.configuration.editalbum.EditAlbumActivity;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
+import com.boztalay.puppyframe.widget.PuppyFrameWidgetProvider;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -41,7 +45,7 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 
         initializeUniversalImageLoader();
         setUpViewsAndTitle();
-        prepareAndUpdateWidget();
+        prepareResult();
 	}
 	
 	private void setUpViewsAndTitle() {
@@ -113,26 +117,25 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
         TextView currentAlbumTitle = (TextView)currentAlbumView.findViewById(R.id.album_title);
         currentAlbumTitle.setText(currentAlbum.getTitle());
 	}
-	
-	private void prepareAndUpdateWidget() {
-		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
-		updateAppWidget(appWidgetId);
-		setResult(RESULT_OK, configurationResult);
-	}
-	
-	private int getAppWidgetId() {
-		Intent intent = getIntent();
-		Bundle extras = intent.getExtras();
-		if(extras == null) {
-			throw new RuntimeException("Couldn't find the widget id!");
-		}
 
-		int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-		if(appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-			throw new RuntimeException("Couldn't find the widget id!");
-		}
-		
-		return appWidgetId;
+    private int getAppWidgetId() {
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras == null) {
+            throw new RuntimeException("Couldn't find the widget id!");
+        }
+
+        int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        if(appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            throw new RuntimeException("Couldn't find the widget id!");
+        }
+
+        return appWidgetId;
+    }
+
+	private void prepareResult() {
+		Intent configurationResult = createConfigurationResultIntent(appWidgetId);
+		setResult(RESULT_OK, configurationResult);
 	}
 
 	private Intent createConfigurationResultIntent(int appWidgetId) {
@@ -140,14 +143,6 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 		configurationResult.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
 		return configurationResult;
-	}
-	
-	private void updateAppWidget(int appWidgetId) {
-		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        if(appWidgetManager != null) {
-            RemoteViews views = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
-            appWidgetManager.updateAppWidget(appWidgetId, views);
-        }
 	}
 	
 	private void initializeUniversalImageLoader() {
@@ -193,7 +188,7 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
     private void refreshAndUpdateEverything() {
         setUpViewsForAlbums();
         albumsAdapter.refreshAlbums();
-        prepareAndUpdateWidget();
+        prepareResult();
     }
 	
 	@Override
@@ -206,4 +201,37 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
             }
         }
 	}
+
+    @Override
+    public void onStop() {
+        updateAllWidgets();
+
+        super.onStop();
+    }
+
+    private void updateAllWidgets() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, PuppyFrameWidgetProvider.class));
+
+        for(int i = 0; i < appWidgetIds.length; i++) {
+            int appWidgetId = appWidgetIds[i];
+
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
+            Intent configIntent = new Intent(this, AlbumsActivity.class);
+
+            Uri.withAppendedPath(Uri.parse("pw" + i + "://widget/id/"), String.valueOf(appWidgetId));
+            configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+
+            PendingIntent configPendingIntent = PendingIntent.getActivity(this, 0, configIntent, 0);
+            remoteViews.setOnClickPendingIntent(R.id.picture_widget_parent, configPendingIntent);
+
+            String currentAlbumId = persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId);
+            if(currentAlbumId != null) {
+                Uri imageUri = Uri.parse(persistenceManager.getAlbumWithId(currentAlbumId).getImagePaths().get(0));
+                remoteViews.setImageViewUri(R.id.the_picture, imageUri);
+            }
+
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        }
+    }
 }
