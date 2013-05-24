@@ -27,7 +27,23 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbb097ca-b966-44b7-8139-69b325f5b31f" name="Default" comment="" />
+    <list default="true" id="dbb097ca-b966-44b7-8139-69b325f5b31f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/albums/AlbumsAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SelectableImageView.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/views/SelectableImageView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/SquareImageView.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/views/SquareImageView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/StoredImagesAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/PuppyFramePersistenceManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/PuppyFrameWidgetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/album_preview.xml" afterPath="$PROJECT_DIR$/res/layout/album_preview.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/puppyframe_info.xml" afterPath="$PROJECT_DIR$/res/xml/puppyframe_info.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/puppyframe_widget.xml" afterPath="$PROJECT_DIR$/res/layout/puppyframe_widget.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/simple_image_view.xml" afterPath="$PROJECT_DIR$/res/layout/simple_image_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="PuppyFrame.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="dbb097ca-b966-44b7-8139-69b325f5b31f" time="1369120334688" ignored="false" />
@@ -470,12 +486,12 @@
       <created>1368992578946</created>
       <updated>1368992578946</updated>
       <workItem from="1368992585583" duration="3363000" />
-      <workItem from="1368995995354" duration="39191000" />
+      <workItem from="1368995995354" duration="39119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42554000" />
+    <option name="totallyTimeSpent" value="42482000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
