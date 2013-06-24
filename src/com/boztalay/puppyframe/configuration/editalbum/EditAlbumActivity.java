@@ -3,6 +3,7 @@ package com.boztalay.puppyframe.configuration.editalbum;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,7 +19,7 @@ import com.boztalay.puppyframe.configuration.views.SelectableImageView;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
-public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener {
+public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener, ImageResizer.ImageResizingListener {
 	public static final String ALBUM_ID_KEY = "albumId";
     public static final String APP_WIDGET_ID_KEY = "appWidgetId";
 
@@ -153,8 +154,15 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	}
 
     private void saveAlbumAndExit() {
-        imageResizer.resizeAndCacheLargeImagesInAlbum(album);
+        imageResizer.resizeAndCacheLargeImagesInAlbum(album, this);
 
+        ProgressDialog loadingDialog = new ProgressDialog(this);
+        loadingDialog.setMessage("Caching images...");
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
+    }
+
+    public void imageResizingCompleted() {
         album.setThumbnailPath(album.getImagePaths().get(album.getImagePaths().size() - 1));
         persistenceManager.saveAlbum(album);
         persistenceManager.setCurrentAlbumForAppWidgetId(album, appWidgetId);
