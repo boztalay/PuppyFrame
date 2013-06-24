@@ -17,11 +17,21 @@ import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
 public class PuppyFrameWidgetProvider extends AppWidgetProvider {
 
+    @Override
+    public void onEnabled(Context context) {
+        Log.d("PuppyFrame", "onEnabled called, starting ScreenOnService");
+
+        Intent serviceIntent = new Intent(context, ScreenOnService.class);
+        context.startService(serviceIntent);
+    }
+
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 
-        updateAllWidgets(context, appWidgetManager, appWidgetIds);
+        Log.d("PuppyFrame", "onUpdate called");
+
+//        updateAllWidgets(context, appWidgetManager, appWidgetIds);
 	}
 
     private void updateAllWidgets(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -29,6 +39,7 @@ public class PuppyFrameWidgetProvider extends AppWidgetProvider {
 
         for(int i = 0; i < appWidgetIds.length; i++) {
             int appWidgetId = appWidgetIds[i];
+            Log.d("PuppyFrame", "Updating widget with id: " + appWidgetId);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.puppyframe_widget);
             Intent configIntent = new Intent(context, AlbumsActivity.class);
@@ -40,8 +51,11 @@ public class PuppyFrameWidgetProvider extends AppWidgetProvider {
             remoteViews.setOnClickPendingIntent(R.id.picture_widget_parent, configPendingIntent);
 
             String currentAlbumId = persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId);
+            Log.d("PuppyFrame", "Widget has album id: " + currentAlbumId);
             if(currentAlbumId != null) {
+                Log.d("PuppyFrame", "Album id wasn't null");
                 Uri imageUri = Uri.parse(persistenceManager.getAlbumWithId(currentAlbumId).getImagePaths().get(0));
+                Log.d("PuppyFrame", "Widget imageUri: " + imageUri.toString());
                 remoteViews.setImageViewUri(R.id.the_picture, imageUri);
             }
 

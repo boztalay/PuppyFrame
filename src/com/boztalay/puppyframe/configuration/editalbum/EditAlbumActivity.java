@@ -33,14 +33,17 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	
 	private StoredImagesAdapter storedImagesAdapter;
 
+    private ImageResizer imageResizer;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_album);
 
 		determineEditModeAndLoadAlbum();
-
 		setUpViewsAndTitle();
+
+        imageResizer = new ImageResizer(this);
 	}
 
 	private void determineEditModeAndLoadAlbum() {
@@ -150,6 +153,8 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	}
 
     private void saveAlbumAndExit() {
+        imageResizer.resizeAndCacheLargeImagesInAlbum(album);
+
         album.setThumbnailPath(album.getImagePaths().get(album.getImagePaths().size() - 1));
         persistenceManager.saveAlbum(album);
         persistenceManager.setCurrentAlbumForAppWidgetId(album, appWidgetId);

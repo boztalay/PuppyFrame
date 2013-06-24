@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -204,6 +205,8 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 
     @Override
     public void onStop() {
+        Log.d("PuppyFrame", "AlbumsActivity: Stopping, updating all widgets with their first images");
+
         updateAllWidgets();
 
         super.onStop();
@@ -215,23 +218,29 @@ public class AlbumsActivity extends Activity implements AdapterView.OnItemClickL
 
         for(int i = 0; i < appWidgetIds.length; i++) {
             int appWidgetId = appWidgetIds[i];
-
-            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
-            Intent configIntent = new Intent(this, AlbumsActivity.class);
-
-            Uri.withAppendedPath(Uri.parse("pw" + i + "://widget/id/"), String.valueOf(appWidgetId));
-            configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-
-            PendingIntent configPendingIntent = PendingIntent.getActivity(this, 0, configIntent, 0);
-            remoteViews.setOnClickPendingIntent(R.id.picture_widget_parent, configPendingIntent);
+            Log.d("PuppyFrame", "Updating widget with id: " + appWidgetId);
 
             String currentAlbumId = persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId);
-            if(currentAlbumId != null) {
-                Uri imageUri = Uri.parse(persistenceManager.getAlbumWithId(currentAlbumId).getImagePaths().get(0));
-                remoteViews.setImageViewUri(R.id.the_picture, imageUri);
-            }
+            Log.d("PuppyFrame", "Widget has album id: " + currentAlbumId);
 
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+            if(currentAlbumId != null) {
+                RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
+                Intent configIntent = new Intent(this, AlbumsActivity.class);
+
+                Uri.withAppendedPath(Uri.parse("pw" + i + "://widget/id/"), String.valueOf(appWidgetId));
+                configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+
+                PendingIntent configPendingIntent = PendingIntent.getActivity(this, 0, configIntent, 0);
+                remoteViews.setOnClickPendingIntent(R.id.picture_widget_parent, configPendingIntent);
+
+                Log.d("PuppyFrame", "Album id wasn't null");
+                Album currentAlbum = persistenceManager.getAlbumWithId(currentAlbumId);
+                Uri imageUri = Uri.parse(currentAlbum.getImagePaths().get(0));
+                Log.d("PuppyFrame", "Widget imageUri: " + imageUri.toString());
+                remoteViews.setImageViewUri(R.id.the_picture, imageUri);
+
+                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+            }
         }
     }
 }
