@@ -69,6 +69,13 @@ public class PuppyFramePersistenceManager implements SharedPreferences.OnSharedP
 		return album;
 	}
 
+    public Album getDefaultAlbum() {
+        loadAlbumIdsFromSharedPrefsIfNeeded();
+
+        String defaultAlbumId = (String)albumIds.toArray()[0];
+        return loadAlbumWithIdFromSharedPrefsAndUpdateWorkingCopy(defaultAlbumId);
+    }
+
 	public void saveAlbum(Album album) {
 		loadAlbumIdsFromSharedPrefsIfNeeded();
 

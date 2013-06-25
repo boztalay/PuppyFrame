@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ImageResizer {
+public class ImageCacher {
     private static final float MAX_IMAGE_SIZE_SCALE_FACTOR = 0.75f;
     public static final String FILE_PROTOCOL = "file://";
 
@@ -27,7 +27,7 @@ public class ImageResizer {
     private Album currentAlbum;
     private ImageResizingListener currentListener;
 
-    public ImageResizer(Context context) {
+    public ImageCacher(Context context) {
         this.context = context;
 
         determineMaxImageDimensions();

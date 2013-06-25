@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.boztalay.puppyframe.configuration.views.SelectableImageView;
 import com.boztalay.puppyframe.persistence.Album;
 import com.boztalay.puppyframe.persistence.PuppyFramePersistenceManager;
 
-public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener, ImageResizer.ImageResizingListener {
+public class EditAlbumActivity extends Activity implements AdapterView.OnItemClickListener, ImageCacher.ImageResizingListener {
 	public static final String ALBUM_ID_KEY = "albumId";
     public static final String APP_WIDGET_ID_KEY = "appWidgetId";
 
@@ -34,17 +35,19 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	
 	private StoredImagesAdapter storedImagesAdapter;
 
-    private ImageResizer imageResizer;
+    private ImageCacher imageCacher;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_album);
 
+        Log.d("PuppyFrame", "EditActivity: onCreate called");
+
 		determineEditModeAndLoadAlbum();
 		setUpViewsAndTitle();
 
-        imageResizer = new ImageResizer(this);
+        imageCacher = new ImageCacher(this);
 	}
 
 	private void determineEditModeAndLoadAlbum() {
@@ -52,14 +55,19 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 
 		String editingAlbumId = getIntent().getStringExtra(ALBUM_ID_KEY);
 		if(editingAlbumId != null) {
+            Log.d("PuppyFrame", "EditActivity: Started in edit mode");
+
 			editingMode = EditMode.EDITING;
 			album = persistenceManager.getAlbumWithId(editingAlbumId);
 		} else {
+            Log.d("PuppyFrame", "EditActivity: Started in add mode");
+
 			editingMode = EditMode.ADDING;
 			album = persistenceManager.createNewAlbum("Untitled Album");
 		}
 
         appWidgetId = getIntent().getIntExtra(APP_WIDGET_ID_KEY, -1);
+        Log.d("PuppyFrame", "EditActivity: AppWidgetId: " + appWidgetId);
 	}
 
 	private void setUpViewsAndTitle() {
@@ -106,9 +114,11 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String pathOfImageClicked = (String) parent.getAdapter().getItem(position);
         if(album.getImagePaths().contains(pathOfImageClicked) || album.isImageCached(pathOfImageClicked)) {
+            Log.d("PuppyFrame", "EditActivity: Image in album clicked, removing it");
             album.removeImagePath(pathOfImageClicked);
             ((SelectableImageView)view).setChecked(false);
         } else {
+            Log.d("PuppyFrame", "EditActivity: Image not in album clicked, adding it");
             album.addImagePath(pathOfImageClicked);
             ((SelectableImageView)view).setChecked(true);
         }
@@ -154,10 +164,10 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
 	}
 
     private void saveAlbumAndExit() {
-        imageResizer.resizeAndCacheLargeImagesInAlbum(album, this);
+        imageCacher.resizeAndCacheLargeImagesInAlbum(album, this);
 
         ProgressDialog loadingDialog = new ProgressDialog(this);
-        loadingDialog.setMessage("Caching images...");
+        loadingDialog.setMessage("Resizing large images...");
         loadingDialog.setCancelable(false);
         loadingDialog.show();
     }

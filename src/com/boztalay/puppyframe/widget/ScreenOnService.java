@@ -41,42 +41,10 @@ public class ScreenOnService extends Service {
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
                     Log.d("PuppyFrame", "ScreenOnService: Screen on intent received, updating widgets");
-                    updateAllWidgets();
+                    WidgetUpdater.updateAllWidgets(context);
                 }
             }
         }, screenOnFilter);
-    }
-
-    private void updateAllWidgets() {
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, PuppyFrameWidgetProvider.class));
-        for(int i = 0; i < appWidgetIds.length; i++) {
-            int appWidgetId = appWidgetIds[i];
-            Log.d("PuppyFrame", "Updating widget with id: " + appWidgetId);
-
-            String currentAlbumId = persistenceManager.getCurrentAlbumIdForAppWidgetId(appWidgetId);
-            Log.d("PuppyFrame", "Widget has album id: " + currentAlbumId);
-
-            if(currentAlbumId != null) {
-                RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.puppyframe_widget);
-                Intent configIntent = new Intent(this, AlbumsActivity.class);
-
-                Uri.withAppendedPath(Uri.parse("pw" + i + "://widget/id/"), String.valueOf(appWidgetId));
-                configIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-
-                PendingIntent configPendingIntent = PendingIntent.getActivity(this, 0, configIntent, 0);
-                remoteViews.setOnClickPendingIntent(R.id.picture_widget_parent, configPendingIntent);
-
-                Log.d("PuppyFrame", "Album id wasn't null");
-                Album currentAlbum = persistenceManager.getAlbumWithId(currentAlbumId);
-                int randomIndex = rand.nextInt(currentAlbum.getImagePaths().size());
-                Log.d("PuppyFrame", "Getting image at index " + randomIndex);
-                Uri imageUri = Uri.parse(currentAlbum.getImagePaths().get(randomIndex));
-                Log.d("PuppyFrame", "Widget imageUri: " + imageUri.toString());
-                remoteViews.setImageViewUri(R.id.the_picture, imageUri);
-
-                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-            }
-        }
     }
 
     @Override
