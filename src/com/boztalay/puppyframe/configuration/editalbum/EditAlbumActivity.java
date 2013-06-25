@@ -105,7 +105,7 @@ public class EditAlbumActivity extends Activity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String pathOfImageClicked = (String) parent.getAdapter().getItem(position);
-        if(album.getImagePaths().contains(pathOfImageClicked)) {
+        if(album.getImagePaths().contains(pathOfImageClicked) || album.isImageCached(pathOfImageClicked)) {
             album.removeImagePath(pathOfImageClicked);
             ((SelectableImageView)view).setChecked(false);
         } else {

@@ -157,8 +157,9 @@ public class ImageResizer {
         protected void onPostExecute(Map<String, Integer> cachedImagePaths) {
             for(String cachedImagePath : cachedImagePaths.keySet()) {
                 int originalImagePathIndex = cachedImagePaths.get(cachedImagePath).intValue();
-                currentAlbum.getImagePaths().remove(originalImagePathIndex);
+                String imagePath = currentAlbum.getImagePaths().remove(originalImagePathIndex);
                 currentAlbum.getImagePaths().add(originalImagePathIndex, cachedImagePath);
+                currentAlbum.cacheImagePath(imagePath, cachedImagePath);
             }
 
             currentListener.imageResizingCompleted();

@@ -1,12 +1,15 @@
 package com.boztalay.puppyframe.persistence;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Album {
 	private String id;
 	private String title;
 	private String thumbnailPath;
-	private ArrayList<String> imagePaths;
+    private ArrayList<String> imagePaths;
+    private Map<String, String> cachedImagePaths;
 	
 	public Album(String id, String title, String thumbnailPath) {
 		this.id = id;
@@ -14,6 +17,7 @@ public class Album {
 		this.thumbnailPath = thumbnailPath;
 		
 		this.imagePaths = new ArrayList<String>();
+        this.cachedImagePaths = new HashMap<String, String>();
 	}
 	
 	public String getId() {
@@ -45,6 +49,26 @@ public class Album {
 	}
 	
 	public void removeImagePath(String imagePath) {
-		imagePaths.remove(imagePath);
+        if(isImageCached(imagePath)) {
+            String cachedImagePath = cachedImagePaths.get(imagePath);
+            cachedImagePaths.remove(imagePath);
+            imagePaths.remove(cachedImagePath);
+        } else {
+            imagePaths.remove(imagePath);
+        }
 	}
+
+    public Map<String, String> getCachedImagePaths() {
+        return cachedImagePaths;
+    }
+
+    public void cacheImagePath(String imagePath, String cachedImagePath) {
+        if(!cachedImagePaths.containsValue(cachedImagePath)) {
+            cachedImagePaths.put(imagePath, cachedImagePath);
+        }
+    }
+
+    public boolean isImageCached(String imagePath) {
+        return cachedImagePaths.containsKey(imagePath);
+    }
 }

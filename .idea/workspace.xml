@@ -26,8 +26,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb097ca-b966-44b7-8139-69b325f5b31f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/Album.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/Album.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/AlbumParser.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/AlbumParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java" afterPath="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java" />
     </list>
     <ignored path="PuppyFrame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,25 +98,54 @@
       <file leaf-file-name="EditAlbumActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="29" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0" vertical-offset="1799" max-vertical-offset="2460">
+            <state line="108" column="26" selection-start="3772" selection-end="3772" vertical-scroll-proportion="0.0" vertical-offset="991" max-vertical-offset="2460">
               <folding>
                 <element signature="e#2211#2247#0" expanded="true" />
                 <element signature="e#2341#2376#0" expanded="true" />
-                <element signature="e#4707#5169#0" expanded="true" />
-                <element signature="e#5164#5165#0" expanded="true" />
+                <element signature="e#4750#5212#0" expanded="true" />
+                <element signature="e#5207#5208#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageResizer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Album.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/Album.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="53" selection-start="1781" selection-end="1781" vertical-scroll-proportion="0.8782467" vertical-offset="524" max-vertical-offset="1200">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoredImagesAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="68" selection-start="2080" selection-end="2080" vertical-scroll-proportion="0.0" vertical-offset="193" max-vertical-offset="1140">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageResizer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="5" selection-start="1801" selection-end="1801" vertical-scroll-proportion="-1.8977273" vertical-offset="2039" max-vertical-offset="2655">
+            <state line="161" column="39" selection-start="6583" selection-end="6583" vertical-scroll-proportion="0.0" vertical-offset="2041" max-vertical-offset="2670">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2139#2156#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlbumParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/AlbumParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="51" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="1170">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,9 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/simple_image_view.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_albums.xml" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/EditAlbumActivity.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/AlbumsAdapter.java" />
         <option value="$PROJECT_DIR$/res/xml/puppyframe_info.xml" />
@@ -159,8 +188,11 @@
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/widget/ScreenOnService.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageProcessor.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java" />
         <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/AlbumParser.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/Album.java" />
       </list>
     </option>
   </component>
@@ -230,6 +262,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="puppyframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PuppyFrame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PuppyFrame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="puppyframe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="persistence" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -618,26 +672,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_albums.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="38" selection-start="699" selection-end="699" vertical-scroll-proportion="0.41530946" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/album_preview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="561" selection-end="561" vertical-scroll-proportion="0.31758958" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_edit_album.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="30" selection-start="369" selection-end="369" vertical-scroll-proportion="0.2198697" vertical-offset="0" max-vertical-offset="0">
@@ -721,31 +755,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="39" selection-start="6583" selection-end="6583" vertical-scroll-proportion="0.0" vertical-offset="2041" max-vertical-offset="2670">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2139#2156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/AlbumParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="51" selection-start="2333" selection-end="2333" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="1170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/StoredImagesAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="43" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.0" vertical-offset="509" max-vertical-offset="1125">
+        <state line="66" column="68" selection-start="2080" selection-end="2080" vertical-scroll-proportion="0.0" vertical-offset="193" max-vertical-offset="1140">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/EditAlbumActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="29" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0" vertical-offset="1799" max-vertical-offset="2460">
+        <state line="108" column="26" selection-start="3772" selection-end="3772" vertical-scroll-proportion="0.0" vertical-offset="991" max-vertical-offset="2460">
           <folding>
             <element signature="e#2211#2247#0" expanded="true" />
             <element signature="e#2341#2376#0" expanded="true" />
-            <element signature="e#4707#5169#0" expanded="true" />
-            <element signature="e#5164#5165#0" expanded="true" />
+            <element signature="e#4750#5212#0" expanded="true" />
+            <element signature="e#5207#5208#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/configuration/editalbum/ImageResizer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/boztalay/puppyframe/persistence/Album.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="5" selection-start="1801" selection-end="1801" vertical-scroll-proportion="-1.8977273" vertical-offset="2039" max-vertical-offset="2655">
+        <state line="71" column="53" selection-start="1781" selection-end="1781" vertical-scroll-proportion="0.8782467" vertical-offset="524" max-vertical-offset="1200">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2139#2156#0" expanded="true" />
           </folding>
         </state>
       </provider>

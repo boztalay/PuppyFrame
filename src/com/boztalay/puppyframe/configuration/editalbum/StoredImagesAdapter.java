@@ -75,7 +75,8 @@ public class StoredImagesAdapter extends BaseAdapter {
 		String imagePath = (String) getItem(position);
 		ImageLoader.getInstance().displayImage(imagePath, (SelectableImageView)convertView);
 
-        ((SelectableImageView)convertView).setChecked(album.getImagePaths().contains(imagePath));
+        boolean shouldImageBeChecked = album.getImagePaths().contains(imagePath) || album.isImageCached(imagePath);
+        ((SelectableImageView)convertView).setChecked(shouldImageBeChecked);
 
 		return convertView;
 	}
