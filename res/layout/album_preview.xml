@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <com.boztalay.puppyframe.configuration.views.SquareImageView
+    <com.boztalay.puppyframeuid.configuration.views.SquareImageView
         android:id="@+id/album_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
